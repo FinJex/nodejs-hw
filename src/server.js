@@ -1,3 +1,4 @@
+import 'dotenv/config';
 import express from 'express';
 import cors from 'cors';
 import pino from 'pino-http';
@@ -5,6 +6,7 @@ import pino from 'pino-http';
 const app = express();
 const PORT = process.env.PORT ?? 3000;
 
+console.log(process.env.HELLO);
 app.use(express.json());
 app.use(cors());
 app.use(
@@ -34,14 +36,15 @@ const { noteId } = req.params;
 res.status(200).json({message: `Retrieved note with ID: ${noteId}`});
 });
 
-app.use((req, res) => {
-res.status(404).json({message: "Route not found"});
-});
-
 app.get('/test-error', (req, res) => {
   // Штучна помилка для прикладу
   throw new Error('Simulated server error');
 });
+
+app.use((req, res) => {
+res.status(404).json({message: "Route not found"});
+});
+
 
 app.use((err, req, res, next) => {
   console.error(err);
