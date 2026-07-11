@@ -8,7 +8,7 @@ import { logger } from './middleware/logger.js';
 import { notFoundHandler } from './middleware/notFoundHandler.js';
 import { errorHandler } from './middleware/errorHandler.js';
 
-import studentsRoutes from './routes/studentsRoutes.js';
+import notesRoutes from './routes/notesRoutes.js';
 const app = express();
 
 
@@ -33,7 +33,7 @@ res.status(200).json({message: `Retrieved note with ID: ${noteId}`});
 
 
 
-app.use(studentsRoutes);
+app.use(notesRoutes);
 app.use(notFoundHandler);
 app.use(errorHandler);
 await connectMongoDB();
