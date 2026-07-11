@@ -25,27 +25,30 @@ export const createNote = async (req, res) => {
   res.status(201).json(note);
 };
 
-//DELETE /notes/:noteId
+// DELETE /notes/:noteId
 export const deleteNote = async (req, res) => {
-  const {noteId} = req.params;
-    const note = await Note.findByIdAndDelete({_id: noteId });
-    if (!note) {
-      throw createHttpError(404, "Note not found");
-    }
-    res.status(200).json(note);
+  const { noteId } = req.params;
+
+  const note = await Note.findByIdAndDelete(noteId);
+
+  if (!note) {
+    throw createHttpError(404, "Note not found");
+  }
+  res.status(200).json(note);
 };
 
 // PATCH /notes/:noteId
 export const updateNote = async (req, res) => {
-  const {noteId} = req.params;
+  const { noteId } = req.params;
 
-    const note = await Note.findByIdAndUpdate(
-    { _id: noteId }, // Шукаємо по id
+  const note = await Note.findByIdAndUpdate(
+    noteId,
     req.body,
-    { returnDocument: "after" }, // повертаємо оновлений документ
+    { returnDocument: "after" },
   );
-      if (!note) {
-      throw createHttpError(404, "Note not found");
-    }
-    res.status(200).json(note);
+
+  if (!note) {
+    throw createHttpError(404, "Note not found");
+  }
+  res.status(200).json(note);
 };
