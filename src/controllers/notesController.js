@@ -9,23 +9,21 @@ const { tag,
         perPage } = req.query;
 
 const skip = (page - 1) * perPage;
-const myQuery = await Note.find();
-
+const filter = {};
 if (tag) {
-      myQuery.tag = tag;
-    }
+    filter.tag = tag;
+  }
 
 if (search) {
-  myQuery.where({
+  filter.where({
   $or: [
     { title: { $regex: search, $options: 'i' } },
     { content: { $regex: search, $options: 'i' } },
   ],});}
 
-  const [totalNotes, notes] = await Promise.all([
-    myQuery.clone().countDocuments(),
-    myQuery.skip(skip).limit(perPage),
-
+const [totalNotes, notes] = await Promise.all([
+    Note.countDocuments(filter),
+    Note.find(filter).skip(skip).limit(perPage),
   ]);
 const totalPages = Math.ceil(totalNotes / perPage);
 
