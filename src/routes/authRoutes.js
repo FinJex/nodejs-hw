@@ -2,11 +2,11 @@ import { Router } from "express";
 import { celebrate } from "celebrate";
 
 import {
-  getStudents,
-  getStudentById,
-  createStudent,
-  deleteStudent,
-  updateStudent,
+  getAllNotes,
+  getNoteById,
+  createNote,
+  deleteNote,
+  updateNote,
 } from "../controllers/notesController.js";
 
 import {
@@ -39,10 +39,10 @@ router.post("/auth/logout", logoutUser);
 
 router.use("/students", authenticate);
 
-router.get("/students", celebrate(getStudentsSchema), getStudents);
-router.get("/students/:studentId", celebrate(studentIdParamSchema), getStudentById);
-router.post("/students", celebrate(createStudentSchema), createStudent);
-router.delete("/students/:studentId", celebrate(studentIdParamSchema), deleteStudent);
-router.patch("/students/:studentId", celebrate(updateStudentSchema), updateStudent);
+router.get("/students", celebrate(getStudentsSchema), getAllNotes);
+router.get("/students/:studentId", celebrate(studentIdParamSchema), getNoteById);
+router.post("/students", celebrate(createStudentSchema), createNote);
+router.delete("/students/:studentId", celebrate(studentIdParamSchema), deleteNote);
+router.patch("/students/:studentId", celebrate(updateStudentSchema), updateNote);
 
 export default router;
