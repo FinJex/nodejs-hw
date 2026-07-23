@@ -11,7 +11,7 @@ import {
 import {
   registerUserSchema,
   loginUserSchema,
-} from "../validations/authValidations.js";
+} from "../validations/authValidation.js";
 
 import { authenticate } from "../middleware/authenticate.js";
 
