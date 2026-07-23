@@ -13,7 +13,6 @@ import {
   loginUserSchema,
 } from "../validations/authValidation.js";
 
-import { authenticate } from "../middleware/authenticate.js";
 
 const router = Router();
 
@@ -22,7 +21,6 @@ router.post("/auth/login", celebrate(loginUserSchema), loginUser);
 router.post("/auth/refresh", refreshUserSession);
 router.post("/auth/logout", logoutUser);
 
-router.use("/students", authenticate);
 
 
 export default router;
