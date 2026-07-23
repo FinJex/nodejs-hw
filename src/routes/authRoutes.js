@@ -2,21 +2,6 @@ import { Router } from "express";
 import { celebrate } from "celebrate";
 
 import {
-  getAllNotes,
-  getNoteById,
-  createNote,
-  deleteNote,
-  updateNote,
-} from "../controllers/notesController.js";
-
-import {
-  createStudentSchema,
-  getStudentsSchema,
-  studentIdParamSchema,
-  updateStudentSchema,
-} from "../validations/notesValidation.js";
-
-import {
   registerUser,
   loginUser,
   refreshUserSession,
@@ -39,10 +24,5 @@ router.post("/auth/logout", logoutUser);
 
 router.use("/students", authenticate);
 
-router.get("/students", celebrate(getStudentsSchema), getAllNotes);
-router.get("/students/:studentId", celebrate(studentIdParamSchema), getNoteById);
-router.post("/students", celebrate(createStudentSchema), createNote);
-router.delete("/students/:studentId", celebrate(studentIdParamSchema), deleteNote);
-router.patch("/students/:studentId", celebrate(updateStudentSchema), updateNote);
 
 export default router;
