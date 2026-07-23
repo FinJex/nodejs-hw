@@ -7,14 +7,14 @@ import {
   createStudent,
   deleteStudent,
   updateStudent,
-} from "../controllers/studentsController.js";
+} from "../controllers/notesController.js";
 
 import {
   createStudentSchema,
   getStudentsSchema,
   studentIdParamSchema,
   updateStudentSchema,
-} from "../validations/studentsValidation.js";
+} from "../validations/notesValidation.js";
 
 import {
   registerUser,
